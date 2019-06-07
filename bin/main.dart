@@ -1,5 +1,9 @@
-import 'package:pubpsec_updater/pubpsec_updater.dart';
+import 'package:pubspec_helper/pubspec_helper.dart';
 
-main(List<String> arguments) {
-  updatePackages(arguments);
+main(List<String> arguments) async {
+  try {
+    await PubspecHelper(arguments).execute();
+  } catch (error) {
+    print(error);
+  }
 }
