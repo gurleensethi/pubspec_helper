@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="194cdd55-0d34-4685-86e5-f15f521a5839" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/command_handlers/command_handler.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/command_handlers/command_handler.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/command_handlers/update_package_handler.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/command_handlers/update_package_handler.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/dependency.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/dependency.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/command_handlers/update_package_handler.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="29" column="4" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+            <state relative-caret-position="324">
+              <caret line="54" column="3" lean-forward="true" selection-start-line="54" selection-start-column="3" selection-end-line="54" selection-end-column="3" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -64,7 +63,6 @@
         <option value="$PROJECT_DIR$/lib/command_handler.dart" />
         <option value="$PROJECT_DIR$/lib/models/command_result.dart" />
         <option value="$PROJECT_DIR$/bin/main.dart" />
-        <option value="$PROJECT_DIR$/lib/models/dependency.dart" />
         <option value="$PROJECT_DIR$/lib/helpers/yaml_helper.dart" />
         <option value="$PROJECT_DIR$/lib/helpers/file_helper.dart" />
         <option value="$PROJECT_DIR$/lib/helpers/pubspec_content.dart" />
@@ -73,6 +71,7 @@
         <option value="$PROJECT_DIR$/lib/helpers/pubspec_editor.dart" />
         <option value="$PROJECT_DIR$/lib/helpers/arguments_helper.dart" />
         <option value="$PROJECT_DIR$/lib/command_handlers/command_handler.dart" />
+        <option value="$PROJECT_DIR$/lib/models/dependency.dart" />
         <option value="$PROJECT_DIR$/lib/command_handlers/update_package_handler.dart" />
       </list>
     </option>
@@ -189,14 +188,14 @@
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info id="Captures" order="5" />
       <window_info id="Capture Tool" order="6" />
-      <window_info active="true" content_ui="combo" id="Project" order="7" visible="true" weight="0.22344323" />
+      <window_info content_ui="combo" id="Project" order="7" visible="true" weight="0.22344323" />
       <window_info id="Structure" order="8" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Dart Analysis" order="0" weight="0.32867134" />
       <window_info anchor="bottom" id="Android Profiler" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Logcat" order="3" />
       <window_info anchor="bottom" id="Version Control" order="4" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="5" visible="true" weight="0.3146853" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="5" visible="true" weight="0.3146853" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="Find" order="7" />
       <window_info anchor="bottom" id="Run" order="8" weight="0.3296593" />
@@ -299,13 +298,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/models/dependency.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/helpers/arguments_helper.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -343,10 +335,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/models/dependency.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/command_handlers/update_package_handler.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="29" column="4" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+        <state relative-caret-position="324">
+          <caret line="54" column="3" lean-forward="true" selection-start-line="54" selection-start-column="3" selection-end-line="54" selection-end-column="3" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>

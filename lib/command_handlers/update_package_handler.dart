@@ -7,13 +7,17 @@ import 'package:html/parser.dart' show parse;
 
 class UpdatePackageHandler implements CommandHandler {
   @override
-  void handleCommand(PubspecEditor editor) {
+  void handleCommand(PubspecEditor editor) async {
     _validateDependencies(editor.dependencies);
     _printNumOfDependencies(editor.dependencies);
 
-    editor.dependencies.forEach((dep) {
-      _comparePackageVersionFromPub(dep);
-    });
+    final updatedDependencies =
+        await _updateDependenciesFromPub(editor.dependencies);
+
+    final updateCount = _countDependenciesThatRequireUpdate(
+        editor.dependencies, updatedDependencies);
+
+    _printDependenciesThatRequireUpdate(updateCount);
   }
 
   void _validateDependencies(List<Dependency> dependencies) {
@@ -26,8 +30,38 @@ class UpdatePackageHandler implements CommandHandler {
     print("${dependencies.length} dependencies found!");
   }
 
+  void _printDependenciesThatRequireUpdate(int count) {
+    if (count == 0) {
+      print("All dependencies are up to date!");
+    } else {
+      print("$count ${count == 1 ? "dependency" : "dependencies"} "
+          "require update!");
+    }
+  }
+
+  int _countDependenciesThatRequireUpdate(
+    List<Dependency> oldDependencies,
+    List<Dependency> updateDependencies,
+  ) {
+    int updateCount = 0;
+
+    for (int i = 0; i < oldDependencies.length; i++) {
+      if (oldDependencies[i].version != updateDependencies[i].version) {
+        updateCount++;
+      }
+    }
+
+    return updateCount;
+  }
+
+  Future<List<Dependency>> _updateDependenciesFromPub(
+      List<Dependency> dependencies) async {
+    final futures = dependencies.map(_getDependencyFromPub);
+    return Future.wait(futures);
+  }
+
   /// Returns a String message is update is required by comparing with pub.
-  Future<String> _comparePackageVersionFromPub(Dependency dependency) async {
+  Future<Dependency> _getDependencyFromPub(Dependency dependency) async {
     try {
       final pubHtml =
           await NetworkHelper.fetchPackagePubWebsite(dependency.name);
@@ -41,17 +75,13 @@ class UpdatePackageHandler implements CommandHandler {
           .text
           .trim();
 
-      print(dependency.name);
-      print("  Current: [$oldPackage]\n  From Pub: [$newPackage]");
-
       if (oldPackage != newPackage) {
-        return "Update Required:\n  $oldPackage --> $newPackage";
+        return dependency.copyWith(version: newPackage);
       }
     } catch (error) {
-      print('Unable to fetch details for ${dependency.name}');
-      return null;
+      return dependency;
     }
 
-    return null;
+    return dependency;
   }
 }
