@@ -19,8 +19,7 @@ class UpdatePackageHandler implements CommandHandler {
 
     _printDependenciesThatRequireUpdate(updateCount);
 
-    editor.updateDependencies(updatedDependencies);
-    editor.write();
+    _prettyPrint(editor.dependencies, updatedDependencies);
   }
 
   void _validateDependencies(List<Dependency> dependencies) {
@@ -30,7 +29,7 @@ class UpdatePackageHandler implements CommandHandler {
   }
 
   void _printNumOfDependencies(List<Dependency> dependencies) {
-    print("${dependencies.length} dependencies found!");
+    print("${dependencies.length} dependencies found.");
   }
 
   void _printDependenciesThatRequireUpdate(int count) {
@@ -39,6 +38,20 @@ class UpdatePackageHandler implements CommandHandler {
     } else {
       print("$count ${count == 1 ? "dependency" : "dependencies"} "
           "require update!");
+    }
+  }
+
+  void _prettyPrint(List<Dependency> oldDependencies, List<Dependency> updatedDependencies) {
+    print("");
+
+    for (int i = 0; i < oldDependencies.length; i++) {
+      final oldDependency = oldDependencies[i];
+      final updatedDependency = updatedDependencies[i];
+
+      if (oldDependency.version != updatedDependency.version) {
+        print("${oldDependency.name}:");
+        print("  ${oldDependency.version} -> ${updatedDependency.version}\n");
+      }
     }
   }
 
@@ -79,7 +92,7 @@ class UpdatePackageHandler implements CommandHandler {
           .trim();
 
       if (oldPackage != newPackage) {
-        return dependency.copyWith(version: newPackage);
+        return dependency.copyWith(version: newPackage.split(" ")[1]);
       }
     } catch (error) {
       return dependency;
