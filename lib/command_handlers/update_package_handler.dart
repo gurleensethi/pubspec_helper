@@ -18,6 +18,9 @@ class UpdatePackageHandler implements CommandHandler {
         editor.dependencies, updatedDependencies);
 
     _printDependenciesThatRequireUpdate(updateCount);
+
+    editor.updateDependencies(updatedDependencies);
+    editor.write();
   }
 
   void _validateDependencies(List<Dependency> dependencies) {
@@ -41,12 +44,12 @@ class UpdatePackageHandler implements CommandHandler {
 
   int _countDependenciesThatRequireUpdate(
     List<Dependency> oldDependencies,
-    List<Dependency> updateDependencies,
+    List<Dependency> updatedDependencies,
   ) {
     int updateCount = 0;
 
     for (int i = 0; i < oldDependencies.length; i++) {
-      if (oldDependencies[i].version != updateDependencies[i].version) {
+      if (oldDependencies[i].version != updatedDependencies[i].version) {
         updateCount++;
       }
     }

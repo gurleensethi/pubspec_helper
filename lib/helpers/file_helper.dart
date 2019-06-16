@@ -26,4 +26,8 @@ class FileHelper {
           "Please provide a '$fileExtension' file");
     }
   }
+
+  void writeFile(String content) {
+
+  }
 }
