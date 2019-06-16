@@ -14,9 +14,18 @@ Go to the [release section](https://github.com/gurleensethi/pubspec_helper/relea
 
 ## Update Checker
 
-Check which of your dependencies needs update and to get its latest version.
+Check which of your dependencies needs update and get its latest version.
 
 Run the following command:
 ```shell
 dartaotruntime pubspec_helper.dart.aot update -f pubspec.yaml
+```
+
+Example Output:
+```
+2 dependencies found.
+1 dependency require update!
+
+path:
+  1.6.1 -> 1.6.2
 ```
