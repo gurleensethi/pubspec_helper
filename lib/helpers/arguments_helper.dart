@@ -13,12 +13,13 @@ class ArgumentsHelper {
 
   /// Initialise the arguments
   void _setUpArgParser() {
-    _argParser.addOption("file", abbr: "f");
-
     final updateParser =
         _argParser.addCommand(CommandTypeUtil.asString(CommandType.update));
 
-    updateParser.addFlag("n", defaultsTo: false);
+    updateParser.addOption("file", abbr: "f");
+
+    final searchParser =
+        _argParser.addCommand(CommandTypeUtil.asString(CommandType.search));
 
     _argResults = _argParser.parse(args);
   }
@@ -30,13 +31,24 @@ class ArgumentsHelper {
       throw Exception("Zero or Invalid command passed!");
     }
 
-    // Check if a file name is provided
-    if (_argResults['file'] == null) {
-      throw Exception("Please provide a file using -f option.");
-    }
-
     final commandType = CommandTypeUtil.fromString(command.name);
-    final filePath = _argResults['file'];
+    String filePath;
+
+    switch (commandType) {
+      case CommandType.update:
+        {
+          // Check if a file name is provided
+          if (command['file'] == null) {
+            throw Exception("Please provide a file using -f option.");
+          }
+          filePath = command['file'];
+          break;
+        }
+      case CommandType.search:
+        {
+          break;
+        }
+    }
 
     return CommandResult(
       commandType: commandType,

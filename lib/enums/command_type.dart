@@ -1,4 +1,4 @@
-enum CommandType { update }
+enum CommandType { update, search }
 
 class CommandTypeUtil {
   static CommandType fromString(String name) {

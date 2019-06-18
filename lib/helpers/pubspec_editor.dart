@@ -1,8 +1,9 @@
 import 'package:pubspec_helper/helpers/file_helper.dart';
 import 'package:pubspec_helper/models/dependency.dart';
+import 'package:pubspec_helper/models/handler_util.dart';
 import 'package:yaml/yaml.dart' as yaml;
 
-class PubspecEditor {
+class PubspecEditor implements HandlerUtil {
   final List<Dependency> _dependencies = [];
   final FileHelper fileHelper;
   final Map<String, dynamic> _pubspecContent = {};

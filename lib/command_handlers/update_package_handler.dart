@@ -5,7 +5,7 @@ import 'package:pubspec_helper/helpers/pubspec_editor.dart';
 import 'package:pubspec_helper/models/dependency.dart';
 import 'package:html/parser.dart' show parse;
 
-class UpdatePackageHandler implements CommandHandler {
+class UpdatePackageHandler implements CommandHandler<PubspecEditor> {
   @override
   void handleCommand(PubspecEditor editor) async {
     _validateDependencies(editor.dependencies);
