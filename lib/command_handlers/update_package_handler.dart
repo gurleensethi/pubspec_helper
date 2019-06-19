@@ -1,4 +1,3 @@
-import 'package:path/path.dart';
 import 'package:pubspec_helper/command_handlers/command_handler.dart';
 import 'package:pubspec_helper/helpers/network_helper.dart';
 import 'package:pubspec_helper/helpers/pubspec_editor.dart';
