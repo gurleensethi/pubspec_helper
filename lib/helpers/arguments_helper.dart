@@ -21,6 +21,13 @@ class ArgumentsHelper {
     final searchParser =
         _argParser.addCommand(CommandTypeUtil.asString(CommandType.search));
 
+    searchParser.addOption(
+      "term",
+      valueHelp: "Search term",
+      abbr: "t",
+      help: "The search term that will be searched on https://pub.dev",
+    );
+
     _argResults = _argParser.parse(args);
   }
 
@@ -33,6 +40,7 @@ class ArgumentsHelper {
 
     final commandType = CommandTypeUtil.fromString(command.name);
     String filePath;
+    String packageSearchTerm;
 
     switch (commandType) {
       case CommandType.update:
@@ -46,6 +54,12 @@ class ArgumentsHelper {
         }
       case CommandType.search:
         {
+          if (command['term'] == null) {
+            throw Exception("Please provide a search term using -t option.\n"
+                "For example:\n"
+                "\tdartaotrumtime pubspec_helper.dart.aot search -t firebase");
+          }
+          packageSearchTerm = command['term'];
           break;
         }
     }
@@ -53,6 +67,7 @@ class ArgumentsHelper {
     return CommandResult(
       commandType: commandType,
       pubspecFilePath: filePath,
+      packageSearchTerm: packageSearchTerm,
     );
   }
 }

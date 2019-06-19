@@ -5,6 +5,7 @@ main(List<String> arguments) async {
     await PubspecHelper(arguments).execute();
   } catch (error, stackTrace) {
     print(error);
+    print("\n\nStackTrace:");
     print(stackTrace);
   }
 }

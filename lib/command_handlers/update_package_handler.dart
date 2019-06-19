@@ -1,12 +1,20 @@
 import 'package:pubspec_helper/command_handlers/command_handler.dart';
+import 'package:pubspec_helper/helpers/file_helper.dart';
 import 'package:pubspec_helper/helpers/network_helper.dart';
 import 'package:pubspec_helper/helpers/pubspec_editor.dart';
 import 'package:pubspec_helper/models/dependency.dart';
 import 'package:html/parser.dart' show parse;
+import 'package:pubspec_helper/models/update_package_options.dart';
 
-class UpdatePackageHandler implements CommandHandler<PubspecEditor> {
+class UpdatePackageHandler implements CommandHandler<UpdatePackageOptions> {
+  PubspecEditor editor;
+
   @override
-  void handleCommand(PubspecEditor editor) async {
+  void handleCommand(UpdatePackageOptions options) async {
+    final fileHelper = FileHelper(filePath: options.pubspecFilePath);
+    fileHelper.validateFile(".yaml");
+    editor = PubspecEditor(fileHelper: fileHelper);
+
     _validateDependencies(editor.dependencies);
     _printNumOfDependencies(editor.dependencies);
 
@@ -40,7 +48,8 @@ class UpdatePackageHandler implements CommandHandler<PubspecEditor> {
     }
   }
 
-  void _prettyPrint(List<Dependency> oldDependencies, List<Dependency> updatedDependencies) {
+  void _prettyPrint(
+      List<Dependency> oldDependencies, List<Dependency> updatedDependencies) {
     print("");
 
     for (int i = 0; i < oldDependencies.length; i++) {
