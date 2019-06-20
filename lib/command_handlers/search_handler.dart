@@ -10,7 +10,10 @@ class SearchHandler extends CommandHandler<SearchHandlerOptions> {
 
     final htmlContent = await NetworkHelper.fetchSearchPubWebsite(options.searchTerm);
 
-    final packages = pubParsingHelper.getPackagesListFromSearch(htmlContent);
+    final packages = await pubParsingHelper.getPackagesListFromSearch(htmlContent);
 
+    packages.forEach((package) {
+      print(package.name);
+    });
   }
 }

@@ -14,4 +14,16 @@ class PacakgeModel {
     this.supportedPlatforms,
     this.lastUpdated,
   });
+
+  @override
+  String toString() {
+    return "PackageModel("
+        "name: $name, "
+        "version: $version, "
+        "score: $score, "
+        "description: $description, "
+        "supportedPlatforms: $supportedPlatforms, "
+        "lastUpdated: $lastUpdated"
+        ")";
+  }
 }

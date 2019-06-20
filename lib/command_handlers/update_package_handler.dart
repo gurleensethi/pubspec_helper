@@ -12,7 +12,7 @@ class UpdatePackageHandler implements CommandHandler<UpdatePackageOptions> {
   @override
   void handleCommand(UpdatePackageOptions options) async {
     final fileHelper = FileHelper(filePath: options.pubspecFilePath);
-    fileHelper.validateFile(".yaml");
+    await fileHelper.validateFile(".yaml");
     editor = PubspecEditor(fileHelper: fileHelper);
 
     _validateDependencies(editor.dependencies);
