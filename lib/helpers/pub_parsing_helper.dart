@@ -11,9 +11,9 @@ class PubParsingHelper {
 
     return packageListDoc[0].children.map((packageElement) {
       final packageName =
-          packageElement.getElementsByClassName("title")[0].text;
+          packageElement.getElementsByClassName("title")[0].text?.trim();
       final packageDescription =
-          packageElement.getElementsByClassName("description")[0].text;
+          packageElement.getElementsByClassName("description")[0].text?.trim();
 
       int packageScore;
       String packageVersion;
@@ -22,23 +22,22 @@ class PubParsingHelper {
 
       // If is core dart package
       if (packageName.startsWith("dart:")) {
-        print("YO");
       } else {
         packageScore = int.parse(
-            packageElement.getElementsByClassName("score-box")[0].text);
+            packageElement.getElementsByClassName("score-box")[0].text?.trim());
 
         final metaDataDoc =
             packageElement.getElementsByClassName("metadata")[0];
         final metaDataAnchorTags = metaDataDoc.getElementsByTagName("a");
 
-        packageVersion = metaDataAnchorTags[0].text;
+        packageVersion = metaDataAnchorTags[0].text?.trim();
 
         supportedPlatforms.addAll(metaDataDoc
             .getElementsByClassName("package-tag")
-            .map((element) => element.text)
+            .map((element) => element.text?.trim())
             .toList());
 
-        lastUpdated = metaDataDoc.getElementsByTagName("span")[0].text;
+        lastUpdated = metaDataDoc.getElementsByTagName("span")[0].text?.trim();
       }
 
       return PacakgeModel(
